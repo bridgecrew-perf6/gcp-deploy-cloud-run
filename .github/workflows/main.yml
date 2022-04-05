@@ -1,0 +1,46 @@
+name: Create Pulumi Resource
+
+on:
+  repository_dispatch:
+    types: [build]
+
+jobs:
+  builds:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.PRISMATIC_FACT_SECRETS }}'
+      - name: Test gcloud
+        run: gcloud projects list --sort-by=projectId --limit=5
+      - name: install dependencies
+        run: |
+          ls
+          npm install
+      - name: Bucket name
+        run: |
+          curl -fsSL https://get.pulumi.com | sh
+          export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
+          pulumi login
+          pulumi config set bucketName my-bucket3 -s dev
+          sleep 1s
+          pulumi up -s dev -y
+      #- uses: pulumi/actions@v3
+      #  with:
+      #    command: up
+      #    stack-name: dev
+      #  env:
+      #    PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_SECRETS }}
