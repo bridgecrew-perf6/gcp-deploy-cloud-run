@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: |
+          docker/setup-buildx-action@v1
+          sudo usermod -a -G docker ${USER}
       - name: Docker version
         run: docker --version
       - id: 'auth'
@@ -41,7 +43,7 @@ jobs:
           pulumi login
           pulumi config set bucketName my-bucket3 -s dev
           sleep 1s
-          pulumi destroy -s dev -y
+          pulumi up -s dev -y
       #- uses: pulumi/actions@v3
       #  with:
       #    command: up
