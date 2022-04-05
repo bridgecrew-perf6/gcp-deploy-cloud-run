@@ -22,7 +22,6 @@ jobs:
       - name: Set up Docker
         uses: |
           docker/setup-buildx-action@v1
-          sudo usermod -a -G docker ${USER}
       - name: Docker version
         run: docker --version
       - id: 'auth'
