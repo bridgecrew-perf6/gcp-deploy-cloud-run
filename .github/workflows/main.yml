@@ -37,7 +37,7 @@ jobs:
           pulumi login
           pulumi config set bucketName my-bucket3 -s dev
           sleep 1s
-          pulumi up -s dev -y
+          pulumi destroy -s dev -y
       #- uses: pulumi/actions@v3
       #  with:
       #    command: up
