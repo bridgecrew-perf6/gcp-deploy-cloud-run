@@ -36,6 +36,7 @@ jobs:
         run: |
           ls
           npm install
+          export ACTIONS_RUNNER_DEBUG=true
           export PROJECT_LOCATION='https://github.com/yabinboxes/wwwroot'
       - name: Bucket name
         run: |
@@ -44,5 +45,5 @@ jobs:
           pulumi login
           pulumi config set bucketName my-bucket3 -s dev
           sleep 1s
-      #    pulumi up -s dev -y
+          pulumi up -s dev -y
       
