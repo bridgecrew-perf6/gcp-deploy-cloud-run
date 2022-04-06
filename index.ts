@@ -6,7 +6,7 @@ const imageName = "my-first-gcp-app";
 const image = new docker.Image("example", {
   imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`,
   build: {
-    context: "./wwwroot",
+    context: process.env.PROJECT_LOCATION),
   },
 });
 
