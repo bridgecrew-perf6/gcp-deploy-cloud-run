@@ -31,7 +31,6 @@ jobs:
       - name: Test & Login gcloud
         run: |
           gcloud projects list --sort-by=projectId --limit=5
-          sudo docker login
           gcloud auth configure-docker
       - name: install dependencies
         run: |
