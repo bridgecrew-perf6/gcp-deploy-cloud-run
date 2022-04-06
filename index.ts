@@ -6,7 +6,7 @@ const imageName = "my-first-gcp-app";
 const image = new docker.Image("example", {
   imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`,
   build: {
-    context: process.env.PROJECT_LOCATION,
+    context: ${PROJECT_LOCATION},
   },
 });
 
@@ -46,6 +46,5 @@ const iam = new gcp.cloudrun.IamMember("example", {
   member: "allUsers",
 });
 
-console.log('The value for FOO is:', process.env.PROJECT_LOCATION);
 
 export const containerUrl = container.statuses[0].url
