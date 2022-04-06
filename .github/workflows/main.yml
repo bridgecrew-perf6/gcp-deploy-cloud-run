@@ -37,7 +37,8 @@ jobs:
           ls
           npm install
           export ACTIONS_RUNNER_DEBUG=true
-          export PROJECT_LOCATION='https://github.com/yabinboxes/wwwroot'
+          git clone https://github.com/yabinboxes/wwwroot
+          export PROJECT_LOCATION='./wwwroot'
       - name: Bucket name
         run: |
           curl -fsSL https://get.pulumi.com | sh
