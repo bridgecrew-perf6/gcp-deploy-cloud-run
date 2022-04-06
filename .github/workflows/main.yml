@@ -37,12 +37,12 @@ jobs:
           ls
           npm install
           export PROJECT_LOCATION='https://github.com/yabinboxes/wwwroot'
-      #- name: Bucket name
-      #  run: |
-      #    curl -fsSL https://get.pulumi.com | sh
-      #    export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
-      #    pulumi login
-      #    pulumi config set bucketName my-bucket3 -s dev
-      #    sleep 1s
+      - name: Bucket name
+        run: |
+          curl -fsSL https://get.pulumi.com | sh
+          export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
+          pulumi login
+          pulumi config set bucketName my-bucket3 -s dev
+          sleep 1s
       #    pulumi up -s dev -y
       
