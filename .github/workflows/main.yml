@@ -28,8 +28,11 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           credentials_json: '${{ secrets.PRISMATIC_FACT_SECRETS }}'
-      - name: Test gcloud
-        run: gcloud projects list --sort-by=projectId --limit=5
+      - name: Test & Login gcloud
+        run: |
+          gcloud projects list --sort-by=projectId --limit=5
+          sudo docker login
+          sudo gcloud auth login --no-launch-browser
       - name: install dependencies
         run: |
           ls
