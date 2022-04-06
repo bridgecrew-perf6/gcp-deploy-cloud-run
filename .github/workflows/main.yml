@@ -32,7 +32,7 @@ jobs:
         run: |
           gcloud projects list --sort-by=projectId --limit=5
           sudo docker login
-          sudo gcloud auth login --no-launch-browser
+          gcloud auth configure-docker
       - name: install dependencies
         run: |
           ls
