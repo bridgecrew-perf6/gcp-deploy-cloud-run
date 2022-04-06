@@ -34,11 +34,11 @@ jobs:
           gcloud auth configure-docker
       - name: install dependencies
         run: |
-          ls
           npm install
           export ACTIONS_RUNNER_DEBUG=true
           git clone https://github.com/yabinboxes/wwwroot
           export PROJECT_LOCATION='./wwwroot'
+          ls
       - name: Bucket name
         run: |
           curl -fsSL https://get.pulumi.com | sh
