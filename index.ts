@@ -46,4 +46,6 @@ const iam = new gcp.cloudrun.IamMember("example", {
   member: "allUsers",
 });
 
+console.log('The value for FOO is:', process.env.PROJECT_LOCATION);
+
 export const containerUrl = container.statuses[0].url
