@@ -45,5 +45,5 @@ jobs:
           pulumi config set projectLocation wwwroot -s dev
           pulumi config set bucketName my-bucket3 -s dev
           sleep 1s
-          pulumi destroy -s dev -y
+          pulumi up -s dev -y
       
