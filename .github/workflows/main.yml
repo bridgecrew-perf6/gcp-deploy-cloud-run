@@ -35,8 +35,6 @@ jobs:
       - name: install dependencies
         run: |
           npm install
-          export ACTIONS_RUNNER_DEBUG=true
-          projectLocation
           git clone https://github.com/yabinboxes/wwwroot
           ls
       - name: Bucket name
