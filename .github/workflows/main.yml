@@ -35,14 +35,14 @@ jobs:
       - name: install dependencies
         run: |
           npm install
-          git clone https://github.com/yabinboxes/wwwroot
+          git clone https://github.com/yabinboxes/pulumi-backend
           ls
       - name: Bucket name
         run: |
           curl -fsSL https://get.pulumi.com | sh
           export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
           pulumi login
-          pulumi config set projectLocation wwwroot -s dev
+          pulumi config set projectLocation pulumi-backend -s dev
           pulumi config set bucketName my-bucket3 -s dev
           sleep 1s
           pulumi destroy -s dev -y
