@@ -8,7 +8,7 @@ const codePath = config.require('projectLocation');
 const image = new docker.Image("example", {
   imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`,
   build: {
-    context: "./" + codePath,
+    context: "./wwwroot",
   },
 });
 
