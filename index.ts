@@ -3,7 +3,8 @@ import * as gcp from "@pulumi/gcp";
 import * as docker from "@pulumi/docker";
 
 const imageName = "my-first-gcp-app";
-const codePath = process.env.PROJECT_LOCATION || 'empty-code';
+const config = new pulumi.Config();
+const codePath = config.require('projectLocation');
 const image = new docker.Image("example", {
   imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`,
   build: {
