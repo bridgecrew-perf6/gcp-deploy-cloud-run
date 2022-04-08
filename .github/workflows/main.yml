@@ -30,7 +30,7 @@ jobs:
       - name: Test & Login gcloud
         run: |
           gcloud projects list --sort-by=projectId --limit=5
-          gcloud auth configure-docker
+          gcloud auth configure-docker gcr.io
       - name: install dependencies
         run: |
           npm install
