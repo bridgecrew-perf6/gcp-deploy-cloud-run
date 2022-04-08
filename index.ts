@@ -21,7 +21,7 @@ const container = new gcp.cloudrun.Service("temp-app", {
         {
           image: image.imageName,
           ports: [{
-            containerPort: 5000,
+            containerPort: 80,
           }],
           resources: {
             requests: {
