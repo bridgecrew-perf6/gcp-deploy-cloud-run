@@ -42,6 +42,7 @@ jobs:
           export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
           pulumi login
           pulumi config set projectLocation pulumi-backend -s dev
+          pulumi stack select -s dev
           pulumi stack export
           pulumi stack import
           sleep 1s
