@@ -5,48 +5,43 @@ import * as docker from "@pulumi/docker";
 const imageName = "my-first-gcp-app";
 const config = new pulumi.Config();
 const codePath = config.require('projectLocation');
-const image = new docker.Image("example", {
-  imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`,
-  build: {
-    context: "./" + codePath,
-  },
-});
 
-const container = new gcp.cloudrun.Service("temp-app", {
-  name: "temp-app",
-  location: "us-central1",
-  template: {
-    spec: {
-      containers: [
-        {
-          image: image.imageName,
-          ports: [{
-            containerPort: 80,
-          }],
-          resources: {
-            requests: {
-              memory: "64Mi",
-              cpu: "200m",
-            },
-            limits: {
-              memory: "256Mi",
-              cpu: "1000m",
-            },
-          },
-        },
-      ],
-      containerConcurrency: 80,
+// get configuration
+const backendPort = config.requireNumber("backend_port");
+const nodeEnvironment = config.require("node_environment");
+
+const stack = pulumi.getStack();
+
+const backendImageName = "backend";
+const backend = new docker.Image("backend", {
+    build: {
+        context: `${process.cwd()}/pulumi-backend`,
     },
-  },
+    imageName: `${backendImageName}:${stack}`,
+    skipPush: true,
 });
 
-// Open the service to public unrestricted access
-const iam = new gcp.cloudrun.IamMember("example", {
-  service: container.name,
-  location: "us-central1",
-  role: "roles/run.invoker",
-  member: "allUsers",
+// create a network!
+const network = new docker.Network("network", {
+    name: `services-${stack}`,
 });
 
-
-export const containerUrl = container.statuses[0].url
+// create the backend container!
+const backendContainer = new docker.Container("backendContainer", {
+    name: `backend-${stack}`,
+    image: backend.baseImageName,
+    ports: [
+        {
+            internal: backendPort,
+            external: backendPort,
+        },
+    ],
+    envs: [
+        `NODE_ENV=${nodeEnvironment}`,
+    ],
+    networksAdvanced: [
+        {
+            name: network.name,
+        },
+    ],
+}, { dependsOn: [ ]});
