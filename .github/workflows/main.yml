@@ -1,9 +1,9 @@
 name: Create Pulumi Resource
 
-on: [push]
-
-#  repository_dispatch:
-#    types: [build]
+on: #[push]
+  repository_dispatch:
+    types: [build]
+    
 jobs:
   builds:
     runs-on: ubuntu-latest
