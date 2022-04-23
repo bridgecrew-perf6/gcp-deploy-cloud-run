@@ -42,7 +42,7 @@ jobs:
           export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
           pulumi login
           pulumi config set projectLocation pulumi-backend -s dev
-          pulumi config set backend_port 5000 -s dev
+          pulumi config set backend_port 80 -s dev
           sleep 1s
           pulumi up -s dev -y
       
