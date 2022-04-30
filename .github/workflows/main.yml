@@ -36,7 +36,7 @@ jobs:
           npm install
           git clone https://github.com/${{github.event.client_payload.repo}}
           ls
-      - name: Bucket name
+      - name: Deploy
         run: |
           curl -fsSL https://get.pulumi.com | sh
           export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
@@ -45,4 +45,15 @@ jobs:
           pulumi config set backend_port 80 -s dev
           sleep 1s
           pulumi destroy -s dev -y
+      - name: Push Deploy & Log file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: 'logs.txt'
+          destination_repo: 'yabinboxes/pulumi-backend-MyCleanTechComp'
+          destination_folder: 'entrypoint'
+          user_email: 'yabin.monroy.1@gmail.com'
+          user_name: 'yabinboxes'
+          commit_message: 'first commit'
       
