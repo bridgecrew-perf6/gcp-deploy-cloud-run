@@ -92,3 +92,5 @@ const iam = new gcp.cloudrun.IamMember("website", {
 
 // Export the URL
 export const containerUrl = containerService.statuses[0].url
+
+console.log("containerService  ------> ", containerService);
