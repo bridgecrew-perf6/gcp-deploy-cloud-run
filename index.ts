@@ -1,6 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as gcp from "@pulumi/gcp";
 import * as docker from "@pulumi/docker";
+import * as fs from "fs";
 
 const imageName = "my-first-gcp-app";
 const config = new pulumi.Config();
@@ -92,3 +93,17 @@ const iam = new gcp.cloudrun.IamMember("website", {
 
 // Export the URL
 export const containerUrl = containerService.statuses[0].url
+
+function GetValue<T>(output: Output<T>) {
+    return new Promise<T>((resolve, reject)=>{
+        output.apply(value=>{
+            resolve(value);
+        });
+    });
+}
+
+(async()=>{
+    fs.writeFileSync("./PulumiOutput_Public.json", JSON.stringify({
+        registryURL: await GetValue(containerUrl)
+    }, null, "\t"));
+})();
