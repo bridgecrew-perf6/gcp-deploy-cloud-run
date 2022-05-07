@@ -44,7 +44,7 @@ jobs:
           pulumi config set projectLocation pulumi-backend -s dev
           pulumi config set backend_port 80 -s dev
           sleep 1s
-          pulumi up -s dev -y
+          pulumi destroy -s dev -y
           ls
       - name: Create Deploy & Log file
         run: |
