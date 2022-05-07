@@ -2,6 +2,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as gcp from "@pulumi/gcp";
 import * as docker from "@pulumi/docker";
 import * as fs from "fs";
+import { Output } from "@pulumi/pulumi";
 
 const imageName = "my-first-gcp-app";
 const config = new pulumi.Config();
