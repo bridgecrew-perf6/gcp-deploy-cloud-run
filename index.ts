@@ -113,6 +113,7 @@ export const out = GetValue(containerUrl);
 
 console.log("---- out -----", out);
 
+
 /*function split(input: pulumi.Input<string>): pulumi.Output<string[]> {
     let output = pulumi.output(input);
     return output.apply(v => v.split());
