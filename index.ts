@@ -104,7 +104,16 @@ function GetValue<T>(output: Output<T>) {
 }
 
 (async()=>{
-    fs.writeFileSync("./PulumiOutput_Public.json", JSON.stringify({
+    fs.writeFileSync("PulumiOutput_Public.txt", JSON.stringify({
         registryURL: await GetValue(containerUrl)
-    }, null, "\t"));
+    }));
 })();
+
+export const out = GetValue(containerUrl);
+
+console.log("---- out -----", out);
+
+/*function split(input: pulumi.Input<string>): pulumi.Output<string[]> {
+    let output = pulumi.output(input);
+    return output.apply(v => v.split());
+}*/
