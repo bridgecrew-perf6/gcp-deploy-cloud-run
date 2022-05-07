@@ -44,10 +44,8 @@ jobs:
           pulumi config set projectLocation pulumi-backend -s dev
           pulumi config set backend_port 80 -s dev
           sleep 1s
-          pulumi destroy -s dev -y
-          pulumi stack select dev
-          pulumi stack output url
-          curl $(pulumi stack output url)
+          pulumi up -s dev -y
+          ls
       - name: Create Deploy & Log file
         run: |
           echo 'This log a test' >> logs.txt
