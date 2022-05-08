@@ -56,7 +56,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'entrypoint.txt'
+          source_file: 'PulumiOutput_Public.txt'
           destination_repo: 'yabinboxes/pulumi-backend-MyCleanTechComp'
           destination_folder: 'entrypoint'
           user_email: 'yabin.monroy.1@gmail.com'
