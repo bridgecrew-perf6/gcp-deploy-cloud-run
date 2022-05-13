@@ -57,10 +57,10 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'PulumiOutput_Public.txt'
-          destination_repo: 'yabinboxes/pulumi-backend-MyCleanTechComp'
+          destination_repo: 'yabinboxes/cloud-admin'
           destination_folder: 'entrypoint'
-          user_email: 'yabin.monroy.1@gmail.com'
-          user_name: 'yabinboxes'
+          user_email: ${{ github.event.client_payload.cloudEmailGithub }}
+          user_name: ${{ github.event.client_payload.cloudUserGithub }}
           commit_message: 'first commit'
       - name: Push Log file
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -68,8 +68,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'logs.txt'
-          destination_repo: 'yabinboxes/pulumi-backend-MyCleanTechComp'
+          destination_repo: 'yabinboxes/cloud-admin'
           destination_folder: 'entrypoint'
-          user_email: 'yabin.monroy.1@gmail.com'
-          user_name: 'yabinboxes'
+          user_email: ${{ github.event.client_payload.cloudEmailGithub }}
+          user_name: ${{ github.event.client_payload.cloudUserGithub }}
           commit_message: 'first commit'
