@@ -44,7 +44,7 @@ jobs:
           pulumi config set projectLocation ${{github.event.client_payload.cloudRepoLocation}} -s dev
           pulumi config set backend_port 80 -s dev
           sleep 1s
-          pulumi destroy -s dev -y
+          pulumi up -s dev -y
           ls
           cat PulumiOutput_Public.txt
       - name: Create Deploy & Log file
