@@ -44,7 +44,7 @@ jobs:
           pulumi config set projectLocation ${{github.event.client_payload.cloudRepoLocation}} -s dev
           pulumi config set backend_port 80 -s dev
           pulumi config set node_environment development -s dev
-          pulumi stack export
+          pulumi stack export -s dev
           sleep 1s
           pulumi destroy -s dev -y
           ls
