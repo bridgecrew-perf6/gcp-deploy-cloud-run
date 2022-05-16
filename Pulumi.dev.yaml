@@ -1,5 +1,3 @@
 config:
+  gcp-deploy-cloud-run:projectLocation: repo1
   gcp:project: prismatic-fact-334421
-  pulumi-gcp-cloud-run:backend_port: "3000"
-  pulumi-gcp-cloud-run:node_environment: development
-  pulumi-gcp-cloud-run:projectLocation: pulumi-backend

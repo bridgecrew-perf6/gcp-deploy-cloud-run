@@ -12,18 +12,13 @@ const config = new pulumi.Config();
 const backendPort = config.requireNumber("backend_port");
 const nodeEnvironment = config.require("node_environment");
 
-// get custom configuration
-const cloudAdmin = "cloud-admin";
-const cloudLocation = "us-central1";
-const myAppName = "my-app";
-
 const stack = pulumi.getStack();
 
 const backendImageName = "backend";
 
 const backend = new docker.Image("backend", {
     build: {
-        context: `${process.cwd()}/cloud-admin`,
+        context: `${process.cwd()}/pulumi-backend`,
     },
     imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`
 });
