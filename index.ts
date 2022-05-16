@@ -18,7 +18,7 @@ const backendImageName = "backend";
 
 const backend = new docker.Image("backend", {
     build: {
-        context: `${process.cwd()}/pulumi-backend`,
+        context: `${process.cwd()}/cloud-admin`,
     },
     imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`
 });
