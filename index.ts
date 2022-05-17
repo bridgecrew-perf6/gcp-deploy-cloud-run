@@ -21,10 +21,9 @@ const stack = pulumi.getStack();
 
 const backendImageName = "backend-2";
 
-const backend = new docker.Image(backendImageName, {
+/*const backend = new docker.Image(backendImageName, {
     build: {
         context: `${process.cwd()}/cloud-admin`,
-        //context: '../cloud-admin',
     },
     imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`
 });
@@ -52,7 +51,7 @@ const backendContainer = new docker.Container("backendContainer", {
             name: network.name,
         },
     ],
-}, { dependsOn: [] });
+}, { dependsOn: [] });*/
 
 
 const containerService = new gcp.cloudrun.Service("my-app-2", {
@@ -60,7 +59,7 @@ const containerService = new gcp.cloudrun.Service("my-app-2", {
     location: "us-central1",
     template: {
         spec: {
-            containers: [
+            /*containers: [
                 {
                     image: backend.imageName,
                     ports: [{
@@ -77,11 +76,11 @@ const containerService = new gcp.cloudrun.Service("my-app-2", {
                         },
                     },
                 },
-            ],
+            ],*/
             containerConcurrency: 80,
-            /*containers: [{
+            containers: [{
                 image: "us-docker.pkg.dev/cloudrun/container/hello",
-            }],*/
+            }],
         },
     },
     traffics: [{
