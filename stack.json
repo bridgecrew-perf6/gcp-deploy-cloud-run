@@ -1,0 +1,232 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2022-04-08T14:37:15.770652-07:00",
+            "magic": "568473a2eca536a7e8d600444aa57b4c9fa16b4ee98825be896ac6d73de5da84",
+            "version": "v3.28.0"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "yabinboxes",
+                "project": "pulumi-gcp-cloud-run",
+                "stack": "dev"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:pulumi:Stack::pulumi-gcp-cloud-run-dev",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "sequenceNumber": 1
+            },
+            {
+                "urn": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:providers:gcp::default_6_17_0",
+                "custom": true,
+                "id": "ffc60795-8500-41f4-a025-622c6ed5f2cf",
+                "type": "pulumi:providers:gcp",
+                "inputs": {
+                    "project": "prismatic-fact-334421",
+                    "version": "6.17.0"
+                },
+                "outputs": {
+                    "project": "prismatic-fact-334421",
+                    "version": "6.17.0"
+                },
+                "sequenceNumber": 1
+            },
+            {
+                "urn": "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucket:Bucket::website",
+                "custom": true,
+                "id": "website-5780916",
+                "type": "gcp:storage/bucket:Bucket",
+                "inputs": {
+                    "__defaults": [
+                        "forceDestroy",
+                        "name",
+                        "storageClass"
+                    ],
+                    "forceDestroy": false,
+                    "location": "US",
+                    "name": "website-5780916",
+                    "storageClass": "STANDARD"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":240000000000,\"read\":240000000000,\"update\":240000000000}}",
+                    "cors": [],
+                    "defaultEventBasedHold": false,
+                    "encryption": null,
+                    "forceDestroy": false,
+                    "id": "website-5780916",
+                    "labels": {},
+                    "lifecycleRules": [],
+                    "location": "US",
+                    "logging": null,
+                    "name": "website-5780916",
+                    "project": "prismatic-fact-334421",
+                    "publicAccessPrevention": "inherited",
+                    "requesterPays": false,
+                    "retentionPolicy": null,
+                    "selfLink": "https://www.googleapis.com/storage/v1/b/website-5780916",
+                    "storageClass": "STANDARD",
+                    "uniformBucketLevelAccess": false,
+                    "url": "gs://website-5780916",
+                    "versioning": null,
+                    "website": null
+                },
+                "parent": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:pulumi:Stack::pulumi-gcp-cloud-run-dev",
+                "provider": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:providers:gcp::default_6_17_0::ffc60795-8500-41f4-a025-622c6ed5f2cf",
+                "propertyDependencies": {
+                    "location": null
+                },
+                "sequenceNumber": 1
+            },
+            {
+                "urn": "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/defaultObjectAccessControl:DefaultObjectAccessControl::website",
+                "custom": true,
+                "id": "website-5780916/allUsers",
+                "type": "gcp:storage/defaultObjectAccessControl:DefaultObjectAccessControl",
+                "inputs": {
+                    "__defaults": [],
+                    "bucket": "website-5780916",
+                    "entity": "allUsers",
+                    "role": "READER"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":1200000000000,\"delete\":1200000000000,\"update\":1200000000000}}",
+                    "bucket": "website-5780916",
+                    "domain": "",
+                    "email": "",
+                    "entity": "allUsers",
+                    "entityId": "",
+                    "generation": 0,
+                    "id": "website-5780916/allUsers",
+                    "object": "",
+                    "projectTeams": [],
+                    "role": "READER"
+                },
+                "parent": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:pulumi:Stack::pulumi-gcp-cloud-run-dev",
+                "dependencies": [
+                    "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucket:Bucket::website"
+                ],
+                "provider": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:providers:gcp::default_6_17_0::ffc60795-8500-41f4-a025-622c6ed5f2cf",
+                "propertyDependencies": {
+                    "bucket": [
+                        "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucket:Bucket::website"
+                    ],
+                    "entity": null,
+                    "role": null
+                },
+                "sequenceNumber": 1
+            },
+            {
+                "urn": "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucketObject:BucketObject::package.json",
+                "custom": true,
+                "id": "website-5780916-package.json",
+                "type": "gcp:storage/bucketObject:BucketObject",
+                "inputs": {
+                    "__defaults": [
+                        "detectMd5hash"
+                    ],
+                    "bucket": "website-5780916",
+                    "detectMd5hash": "different hash",
+                    "name": "package.json",
+                    "source": {
+                        "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                        "hash": "a325c5ae7840253d41e37f621fc860867df440331cbe5b79220dfc16df9d82ca",
+                        "path": "./pulumi-backend/package.json"
+                    }
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":240000000000,\"delete\":240000000000,\"update\":240000000000}}",
+                    "bucket": "website-5780916",
+                    "cacheControl": "",
+                    "contentDisposition": "",
+                    "contentEncoding": "",
+                    "contentLanguage": "",
+                    "contentType": "text/plain; charset=utf-8",
+                    "crc32c": "+IyKZg==",
+                    "detectMd5hash": "c9IRrUCr/sznPimNcz8XAQ==",
+                    "eventBasedHold": false,
+                    "id": "website-5780916-package.json",
+                    "kmsKeyName": "",
+                    "md5hash": "c9IRrUCr/sznPimNcz8XAQ==",
+                    "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/website-5780916/o/package.json?generation=1649453835226964\u0026alt=media",
+                    "metadata": {},
+                    "name": "package.json",
+                    "outputName": "package.json",
+                    "selfLink": "https://www.googleapis.com/storage/v1/b/website-5780916/o/package.json",
+                    "source": {
+                        "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                        "hash": "a325c5ae7840253d41e37f621fc860867df440331cbe5b79220dfc16df9d82ca",
+                        "path": "./pulumi-backend/package.json"
+                    },
+                    "storageClass": "STANDARD",
+                    "temporaryHold": false
+                },
+                "parent": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:pulumi:Stack::pulumi-gcp-cloud-run-dev",
+                "dependencies": [
+                    "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/defaultObjectAccessControl:DefaultObjectAccessControl::website",
+                    "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucket:Bucket::website"
+                ],
+                "provider": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:providers:gcp::default_6_17_0::ffc60795-8500-41f4-a025-622c6ed5f2cf",
+                "propertyDependencies": {
+                    "bucket": [
+                        "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucket:Bucket::website"
+                    ],
+                    "name": null,
+                    "source": null
+                },
+                "sequenceNumber": 1
+            },
+            {
+                "urn": "urn:pulumi:dev::pulumi-gcp-cloud-run::gcp:storage/bucket:Bucket::my-bucket3",
+                "custom": true,
+                "id": "my-bucket3-05c8a8e",
+                "type": "gcp:storage/bucket:Bucket",
+                "inputs": {
+                    "__defaults": [
+                        "forceDestroy",
+                        "name",
+                        "storageClass"
+                    ],
+                    "forceDestroy": false,
+                    "location": "US",
+                    "name": "my-bucket3-05c8a8e",
+                    "storageClass": "STANDARD"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":240000000000,\"read\":240000000000,\"update\":240000000000}}",
+                    "cors": [],
+                    "defaultEventBasedHold": false,
+                    "encryption": null,
+                    "forceDestroy": false,
+                    "id": "my-bucket3-05c8a8e",
+                    "labels": {},
+                    "lifecycleRules": [],
+                    "location": "US",
+                    "logging": null,
+                    "name": "my-bucket3-05c8a8e",
+                    "project": "prismatic-fact-334421",
+                    "publicAccessPrevention": "inherited",
+                    "requesterPays": false,
+                    "retentionPolicy": null,
+                    "selfLink": "https://www.googleapis.com/storage/v1/b/my-bucket3-05c8a8e",
+                    "storageClass": "STANDARD",
+                    "uniformBucketLevelAccess": false,
+                    "url": "gs://my-bucket3-05c8a8e",
+                    "versioning": null,
+                    "website": null
+                },
+                "parent": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:pulumi:Stack::pulumi-gcp-cloud-run-dev",
+                "provider": "urn:pulumi:dev::pulumi-gcp-cloud-run::pulumi:providers:gcp::default_6_17_0::ffc60795-8500-41f4-a025-622c6ed5f2cf",
+                "propertyDependencies": {
+                    "location": null
+                },
+                "sequenceNumber": 1
+            }
+        ]
+    }
+}

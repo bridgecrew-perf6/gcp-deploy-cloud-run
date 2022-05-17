@@ -12,13 +12,19 @@ const config = new pulumi.Config();
 const backendPort = config.requireNumber("backend_port");
 const nodeEnvironment = config.require("node_environment");
 
+// get custom configuration
+const cloudAdmin = "cloud-admin";
+const cloudLocation = "us-central1";
+const myAppName = "my-app";
+
 const stack = pulumi.getStack();
 
-const backendImageName = "backend";
+const backendImageName = "backend-2";
 
-const backend = new docker.Image("backend", {
+const backend = new docker.Image(backendImageName, {
     build: {
         context: `${process.cwd()}/cloud-admin`,
+        //context: '../cloud-admin',
     },
     imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`
 });
@@ -49,8 +55,8 @@ const backendContainer = new docker.Container("backendContainer", {
 }, { dependsOn: [] });
 
 
-const containerService = new gcp.cloudrun.Service("my-app", {
-    name: "my-app",
+const containerService = new gcp.cloudrun.Service("my-app-2", {
+    name: "my-app-2",
     location: "us-central1",
     template: {
         spec: {
@@ -85,7 +91,7 @@ const containerService = new gcp.cloudrun.Service("my-app", {
 });
 
 // Open the service to public unrestricted access
-const iam = new gcp.cloudrun.IamMember("website", {
+const iam = new gcp.cloudrun.IamMember("website-2", {
     service: containerService.name,
     location: "us-central1",
     role: "roles/run.invoker",

@@ -1,0 +1,1 @@
+{"registryURL":"https://my-app-rlxbkxmq4a-uc.a.run.app"}
