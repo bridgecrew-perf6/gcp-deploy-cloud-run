@@ -3,7 +3,10 @@ name: Create Pulumi Resource
 on:
   repository_dispatch:
     types: [build]
-    
+
+# CLOUD_REPO_LOCATION
+#
+
 jobs:
   builds:
     runs-on: ubuntu-latest
@@ -16,6 +19,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      # ---- functionality ----
       - name: payload
         run: echo ${{github.event.client_payload.cloudRepoLocation}}
       - name: Set up Docker
@@ -46,20 +50,18 @@ jobs:
           pulumi config set node_environment development -s dev
           sleep 1s
           pulumi up -s dev -y
-          ls
-          cat PulumiOutput_Public.txt
       - name: Create Deploy & Log file
         run: |
-          echo 'This log a test' >> logs.txt
-          echo 'This entrypoint test' >> entrypoint.txt
+          echo 'empty output logs' >> Logs.txt
+          echo 'output url' >> PulumiOutput_Public.json
       - name: Push Deploy file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'PulumiOutput_Public.txt'
-          destination_repo: 'yabinboxes/cloud-admin'
-          destination_folder: 'entrypoint'
+          source_file: 'PulumiOutput_Public.json'
+          destination_repo: ${{github.event.client_payload.cloudRepoLocation}}
+          destination_folder: 'cloud-files'
           user_email: ${{ github.event.client_payload.cloudEmailGithub }}
           user_name: ${{ github.event.client_payload.cloudUserGithub }}
           commit_message: 'first commit'
@@ -68,9 +70,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'logs.txt'
-          destination_repo: 'yabinboxes/cloud-admin'
-          destination_folder: 'entrypoint'
+          source_file: 'Logs.txt'
+          destination_repo: ${{github.event.client_payload.cloudRepoLocation}}
+          destination_folder: 'cloud-files'
           user_email: ${{ github.event.client_payload.cloudEmailGithub }}
           user_name: ${{ github.event.client_payload.cloudUserGithub }}
           commit_message: 'first commit'

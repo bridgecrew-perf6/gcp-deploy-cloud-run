@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../cloud-admin/.idea/cloud-admin.iml" filepath="$PROJECT_DIR$/../cloud-admin/.idea/cloud-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gcp-deploy-cloud-run.iml" filepath="$PROJECT_DIR$/.idea/gcp-deploy-cloud-run.iml" />
     </modules>
   </component>
