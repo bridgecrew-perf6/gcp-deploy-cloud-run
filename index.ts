@@ -40,7 +40,7 @@ const backendContainer = new docker.Container("backendContainer", {
     ports: [
         {
             internal: backendPort,
-            external: backendPort,
+            external: 80,
         },
     ],
     envs: [

@@ -1,5 +1,5 @@
 config:
   gcp:project: prismatic-fact-334421
-  pulumi-gcp-cloud-run:backend_port: "80"
+  pulumi-gcp-cloud-run:backend_port: "5000"
   pulumi-gcp-cloud-run:node_environment: development
   pulumi-gcp-cloud-run:projectLocation: yabinboxes/cloud-admin
