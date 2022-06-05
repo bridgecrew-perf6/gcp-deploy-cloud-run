@@ -9,7 +9,7 @@ const config = new pulumi.Config();
 //const codePath = config.require('projectLocation');
 
 // get configuration
-const backendPort = config.requireNumber("backend_port");
+const appPort = config.requireNumber("app_port");
 const nodeEnvironment = config.require("node_environment");
 
 // get custom configuration
@@ -39,7 +39,7 @@ const backendContainer = new docker.Container("backendContainer", {
     image: backend.baseImageName,
     ports: [
         {
-            internal: backendPort,
+            internal: appPort,
             external: 80,
         },
     ],

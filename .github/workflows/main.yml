@@ -46,7 +46,7 @@ jobs:
           export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_SECRETS }}
           pulumi login
           pulumi config set projectLocation ${{github.event.client_payload.cloudRepoLocation}} -s dev
-          pulumi config set backend_port 5000 -s dev
+          pulumi config set app_port ${{github.event.client_payload.appPort}} -s dev
           pulumi config set node_environment development -s dev
           sleep 1s
           pulumi up -s dev -y
